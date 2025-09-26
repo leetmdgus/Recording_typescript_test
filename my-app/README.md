@@ -72,12 +72,19 @@ export default defineConfig([
 ])
 ```
 
-## 필요한거
+
+
+## ########## Essential ########## ##
+
 # Make React file : npm create vite@latest my-app -- --template react-ts
 # nvm github download required
 
+# Selectively -> start folder
 nvm install 22.12.0
 nvm use 22.12.0
 npm install -g npm@latest
 
+# Path : ../my-app
 npm i react-router-dom
+npm i styled-components
+npm i -D @types/styled-components

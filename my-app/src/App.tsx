@@ -1,6 +1,9 @@
 import { Routes, Route, useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 import RecordingPage from './pages/RecordingPage'
+import MainPage from './Mainpage'
+import SeniorDetails from './pages/Senior_details'
+import Counsel from './pages/Counsel'
 
 const Page = styled.div`
   min-height: 100dvh;
@@ -77,7 +80,10 @@ function Home() {
 export default function App() {
   return (
     <Routes>
-      <Route path="/" element={<Home />} />
+      <Route path="/" element={<MainPage />} />
+      <Route path="/home" element={<Home />} />
+      <Route path="/Senior_details" element={<SeniorDetails />} />
+      <Route path="/Counsel" element={<Counsel />} />
       <Route path="/RecordingPage" element={<RecordingPage />} />
     </Routes>
   )

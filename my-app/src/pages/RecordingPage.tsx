@@ -248,6 +248,16 @@ export default function RecordingPage() {
     }
   }
 
+
+  // 쿠키에서 csrftoken 읽기 유틸
+  function getCookie(name: string) {
+    const value = `; ${document.cookie}`;
+    const parts = value.split(`; ${name}=`);
+    if (parts.length === 2) return parts.pop()!.split(';').shift()!;
+    return '';
+  }
+
+
   // 🔹 Django 전송 함수
   async function sendToDjango() {
     if (!audioBlob) {
@@ -274,10 +284,12 @@ export default function RecordingPage() {
 
       // 예시 엔드포인트: http://localhost:8000/upload/
       const BASE = import.meta.env.VITE_STATIC_IP;
+      const csrftoken = getCookie('csrftoken');
       const res = await fetch(`${BASE}/download_file/`, {
         method: 'POST',
         body: form,            // ❗ Content-Type 헤더 직접 지정하지 마세요(FormData가 자동 지정)
-        // credentials: 'include', // 세션/쿠키 필요 시
+        credentials: 'include', // 세션/쿠키 필요 시
+        headers: { 'X-CSRFToken': csrftoken },
       })
 
       if (!res.ok) {
