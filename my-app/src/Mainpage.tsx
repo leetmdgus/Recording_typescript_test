@@ -45,9 +45,9 @@ const Greeting = styled.div`
 `
 
 const DateBar = styled.div`
-  margin: 0 2px 0;
+  margin: 0 7px 0;
   font-weight: bold;
-  display: flex; align-items: center; gap: 2px;
+  display: flex; justify-content: space-between; align-items: center;
   color: #0f172a;
   .count {
     color: #ddd9d9ff;
@@ -229,7 +229,7 @@ export default function MainPage() {
     },
     {
       id: 's2',
-      name: '김복자 님',
+      name: '창복자 님',
       time: '14:00',
       badges: ['남성','우울형'],
       address: '가정방문 | 효가동 15-3 201호',
@@ -238,7 +238,7 @@ export default function MainPage() {
     },
     {
       id: 's3',
-      name: '김복자 님',
+      name: '미복자 님',
       time: '15:45',
       badges: ['여성','우울형'],
       address: '가정방문 | 효가동 15-3 201호',
@@ -324,7 +324,27 @@ export default function MainPage() {
               </Card>
             )
           })}
-          <StartButton onClick={() => navigate('/Counsel')}>
+
+          <StartButton
+            disabled={!selectedId}
+            onClick={() => {
+              const selectedSenior = seniors.find(s => s.id === selectedId);
+
+              if (!selectedSenior) {
+                alert('상담을 시작할 어르신을 선택해주세요.');
+                return;
+              }
+
+              if (window.confirm(`${selectedSenior.name}님의 상담을 시작하겠습니까?`)) {
+                navigate('/Counsel', {
+                  state: {
+                    seniorName: selectedSenior.name
+                    // seniorId: selectedSenior.id 
+                  }
+                });
+              }
+            }}
+          >
             상담 시작하기
           </StartButton>
         </List>
