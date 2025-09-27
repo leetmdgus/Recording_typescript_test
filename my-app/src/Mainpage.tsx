@@ -1,7 +1,8 @@
 // src/pages/MainPage.tsx
 import { useMemo, useState } from 'react'
 import styled, { css } from 'styled-components'
-import { useNavigate } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+
 
 type Senior = {
   id: string
@@ -31,10 +32,16 @@ const Header = styled.header`
 `
 
 const Mascot = styled.div`
-  width: 44px; height: 44px; border-radius: 50%; 
-  background: #fff; border: 2px solid #6994eaff;
-  display: grid; place-items: center;
-  font-size: 23px; box-shadow: 0 6px 16px rgba(2,6,23,0.06);
+  img {
+    width: 48px;
+    height: 48px;
+    margin-right: 16px;
+    border-radius: 24px;
+    border: 1px solid #A1BBFF;
+    background: #EBF1FF;
+    object-fit: cover;
+    object-position: center;
+  }
 `
 
 const Greeting = styled.div`
@@ -191,12 +198,19 @@ const StartButton = styled.button`
 const BottomNav = styled.nav`
   display: grid; grid-template-columns: repeat(3,1fr); gap: 8px;
   padding-top: 6px;
+
   .item {
     display: grid; place-items: center; gap: 4px;
     color: #94a3b8; font-size: 18px; font-weight: 700;
+    text-decoration: none;               /* Link 기본 밑줄 제거 */
+    background: transparent;             /* 버튼처럼 보이게 */
+    border: none;
+    cursor: pointer;
+    padding: 8px 0;
+    border-radius: 10px;
   }
   .item.active { color:#2563eb; }
-`
+`;
 
 // ───────────────── helpers ─────────────────
 function formatTodayKorean(d: Date) {
@@ -254,13 +268,18 @@ export default function MainPage() {
     navigate('/Senior_details', { state: { senior: s } })
   }
 
+  const { pathname } = useLocation();
+
   return (
     <Page>
       <Header>
-        <Mascot>👀</Mascot>
+        <Mascot>
+          <img src="/senior_details_img/AI_profile.png" alt="Status Icon" />
+        </Mascot>
+        
         <Greeting>
           <span className="hello">안녕하세요,</span>
-          <span className="name"><b>홍길동</b> 복지사님! 👋🏻</span>
+          <span className="name"><b>홍길동</b> 생활복지사님! 👋🏻</span>
         </Greeting>
       </Header>
 
@@ -350,14 +369,41 @@ export default function MainPage() {
         </List>
       </div>
       
-
       <Footer>
         {/* 하단 탭 (형식만) */}
-        <BottomNav>
+        {/* <BottomNav>
           <div className="item">📄</div>
           <div className="item">🏠</div>
           <div className="item">📅</div>
-        </BottomNav>
+        </BottomNav> */}
+
+        <BottomNav>
+      <Link
+        to="/management"
+        className={`item ${pathname.startsWith('/management') ? 'active' : ''}`}
+        aria-label="Management"
+      >
+        📄
+      </Link>
+
+      <Link
+        to="/"
+        className={`item ${pathname === '/' ? 'active' : ''}`}
+        aria-label="Home"
+      >
+        🏠
+      </Link>
+
+      <Link
+        to="/calendar"
+        className={`item ${pathname.startsWith('/calendar') ? 'active' : ''}`}
+        aria-label="Calendar"
+      >
+        📅
+      </Link>
+    </BottomNav>
+
+
       </Footer>
     </Page>
   )

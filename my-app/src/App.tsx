@@ -4,6 +4,9 @@ import RecordingPage from './pages/RecordingPage'
 import MainPage from './Mainpage'
 import SeniorDetails from './pages/Senior_details'
 import Counsel from './pages/Counsel'
+import CounselEnd from './pages/CounselEnd'
+import Management from './pages/Management';
+import Calendar from './pages/Calendar';
 
 const Page = styled.div`
   min-height: 100dvh;
@@ -85,6 +88,9 @@ export default function App() {
       <Route path="/Senior_details" element={<SeniorDetails />} />
       <Route path="/Counsel" element={<Counsel />} />
       <Route path="/RecordingPage" element={<RecordingPage />} />
+      <Route path="/CounselEnd" element={<CounselEnd />} />
+      <Route path="/management" element={<Management />} />
+      <Route path="/calendar" element={<Calendar />} />
     </Routes>
   )
 }
