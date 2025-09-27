@@ -1,7 +1,7 @@
 // src/pages/Counsel.tsx
-import React, { useEffect, useMemo, useRef, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import styled, { css } from 'styled-components'
-import { useNavigate, useLocation  } from 'react-router-dom'
+import { useLocation  } from 'react-router-dom'
 
 
 /* ------------------------ styled ------------------------ */
@@ -296,7 +296,6 @@ function pickSupportedMime() {
 
 /* ------------------------ component ------------------------ */
 export default function Counsel() {
-  const navigate = useNavigate()
   const [stepIdx, setStepIdx] = useState(0)
   const [answers, setAnswers] = useState<Record<string, Answer | undefined>>({})
 

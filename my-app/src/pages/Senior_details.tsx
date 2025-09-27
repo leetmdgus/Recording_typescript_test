@@ -1,4 +1,3 @@
-import React, { useEffect, useRef, useState } from 'react'
 import styled, { css } from 'styled-components'
 
 import CircleChart from '../components/CircleChart'
@@ -125,10 +124,6 @@ const Badge = styled.span<{ tone?: 'blue'|'yellow'|'green'|'red'|'gray' }>`
   ${({ tone }) => tone === 'green' && css`color:#0435f8ff; background:#627ff0ff; border-color:#3359f4ff;`}
   ${({ tone }) => tone === 'red' && css`color:#fd4141ff; background:#ffa3a3ff; border-color:#fa8686ff;`}
   ${({ tone }) => (!tone || tone==='gray') && css`color:#475569; background:#f1f5f9; border-color:#e2e8f0;`}
-`
-
-const Meta = styled.div`
-  font-size: 12px; color: #475569; line-height: 1.35;
 `
 
 const SectionPanel = styled.div`
