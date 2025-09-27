@@ -2,6 +2,8 @@ import React, { useEffect, useRef, useState } from 'react'
 import styled, { css } from 'styled-components'
 
 import CircleChart from '../components/CircleChart'
+import { useNavigate, useLocation } from 'react-router-dom'
+
 
 type Senior = {
   id: string
@@ -320,6 +322,9 @@ function toneFor(b: Senior['badges'][number]): 'blue'|'yellow'|'green'|'red'|'gr
 }
 
 export default function Senior_details() {
+  const navigate = useNavigate();
+  const location = useLocation();
+
   const senior: Senior = {
       id: 's1',
       name: '김복자 님',
@@ -357,7 +362,7 @@ export default function Senior_details() {
               </div>
               <div className="details-item">
                 <h2>주소</h2>
-                <p> 춘천시 삭주로 70번길 3, 푸르지오 아파트 107-204</p>
+                <p> 대전시 서구 갈마로 160, 스마일 아파트 111-111</p>
               </div>
               <div className="details-item">
                 <h2>연락처</h2>
