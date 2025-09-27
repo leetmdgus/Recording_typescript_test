@@ -350,12 +350,18 @@ export default function Counsel() {
 
       const filename = `counsel_recording.${ext}`
       const file = new File([blob], filename, { type: blob.type })
-
+      const sex = '여성';     
+      const tendency = '우울함'; 
+      const latest_information = '최근 정보';
       const checklist = buildChecklistJSON()
 
       const form = new FormData()
-      form.append('audio', file)
-      form.append('checklist', JSON.stringify(checklist))
+      form.append('name', String(seniorName ?? ''));
+      form.append('sex', sex);
+      form.append('tendency', tendency);
+      form.append('latest_information', latest_information);
+      form.append('data', JSON.stringify(checklist));
+      form.append('file', file);
       if (seniorName) form.append('seniorName', String(seniorName))
       
       const BASE = import.meta.env.VITE_STATIC_IP;
