@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components'
-
+import { Link,  useLocation } from 'react-router-dom'
 import CircleChart from '../components/CircleChart'
 
 
@@ -286,22 +286,26 @@ const ActionPanel = styled.div`
 `
 
 const Footer = styled.footer`
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: linear-gradient(180deg, #f8fafc 0%, #ffffff 100%);
+  position: sticky; bottom: 0; background: linear-gradient(180deg, #f8fafc 0%, #ffffff 100%);
   border-top: 2px solid #dcdee1ff;
   padding: 14px 16px 18px;
   display: grid; gap: 10px;
 `
 
+
 const BottomNav = styled.nav`
   display: grid; grid-template-columns: repeat(3,1fr); gap: 8px;
   padding-top: 6px;
+
   .item {
     display: grid; place-items: center; gap: 4px;
     color: #94a3b8; font-size: 18px; font-weight: 700;
+    text-decoration: none;               /* Link 기본 밑줄 제거 */
+    background: transparent;             /* 버튼처럼 보이게 */
+    border: none;
+    cursor: pointer;
+    padding: 8px 0;
+    border-radius: 10px;
   }
   .item.active { color:#2563eb; }
 `
@@ -326,6 +330,7 @@ export default function Senior_details() {
       note1: '인지 기능이 10% 감소했어요',
       note2: '대면 관계가 20% 향상되었어요'
     };
+    const { pathname } = useLocation();
 
   return (
     <Page>
@@ -423,16 +428,44 @@ export default function Senior_details() {
           </ActionPanel>
         </SectionPanel>
 
-
+      
 
       </div>
       <Footer>
         {/* 하단 탭 (형식만) */}
-        <BottomNav>
+        {/* <BottomNav>
           <div className="item">📄</div>
           <div className="item">🏠</div>
           <div className="item">📅</div>
-        </BottomNav>
+        </BottomNav> */}
+
+        <BottomNav>
+      <Link
+        to="/management"
+        className={`item ${pathname.startsWith('/management') ? 'active' : ''}`}
+        aria-label="Management"
+      >
+        📄
+      </Link>
+
+      <Link
+        to="/"
+        className={`item ${pathname === '/' ? 'active' : ''}`}
+        aria-label="Home"
+      >
+        🏠
+      </Link>
+
+      <Link
+        to="/calendar"
+        className={`item ${pathname.startsWith('/calendar') ? 'active' : ''}`}
+        aria-label="Calendar"
+      >
+        📅
+      </Link>
+    </BottomNav>
+
+
       </Footer>
     </Page>
   )
