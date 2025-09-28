@@ -1,8 +1,9 @@
 // src/pages/Counsel.tsx
 import { useEffect, useMemo, useRef, useState } from 'react'
 import styled, { css } from 'styled-components'
-import { useNavigate, useLocation  } from 'react-router-dom'
-
+import { useNavigate, useLocation } from 'react-router-dom'
+// import ReactMarkdown from 'react-markdown'
+// import remarkGfm from 'remark-gfm'
 
 /* ------------------------ styled ------------------------ */
 const Page = styled.div`
@@ -264,6 +265,11 @@ const pad2 = (n: number) => (n < 10 ? `0${n}` : `${n}`)
 /* ------------------------ component ------------------------ */
 export default function Counsel() {
   const navigate = useNavigate()
+  const location = useLocation();
+  const seniorName = (location.state as any)?.seniorName
+
+  const [submitting, setSubmitting] = useState(false)
+
   const [stepIdx, setStepIdx] = useState(0)
   const step = STEPS[stepIdx]
   const totalSteps = STEPS.length

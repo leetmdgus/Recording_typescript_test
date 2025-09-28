@@ -1,9 +1,6 @@
 // src/pages/CounselEnd.tsx
-import React from 'react'
 import styled from 'styled-components'
-import { Link, useNavigate, useLocation } from 'react-router-dom'
-import ReactMarkdown from 'react-markdown'
-import remarkGfm from 'remark-gfm'
+import { Link, useLocation } from 'react-router-dom'
 
 /* ------------------------ styled ------------------------ */
 const Page = styled.div`
@@ -74,14 +71,14 @@ const Footer = styled.footer`
   display: grid; gap: 10px;
 `
 
-const Btn = styled.button<{ intent?: 'primary'|'neutral' }>`
-  padding: 12px; border-radius: 12px; font-weight: 800; font-size: 15px; cursor: pointer;
-  border: none;
-  ${({intent}) => intent==='primary'
-    ? `background:#2563eb; color:#fff;`
-    : `background:#f1f5f9; color:#0f172a;`}
-  &:disabled { opacity:.6; cursor:not-allowed; }
-`
+// const Btn = styled.button<{ intent?: 'primary'|'neutral' }>`
+//   padding: 12px; border-radius: 12px; font-weight: 800; font-size: 15px; cursor: pointer;
+//   border: none;
+//   ${({intent}) => intent==='primary'
+//     ? `background:#2563eb; color:#fff;`
+//     : `background:#f1f5f9; color:#0f172a;`}
+//   &:disabled { opacity:.6; cursor:not-allowed; }
+// `
 
 const BottomNav = styled.nav`
   display: grid; grid-template-columns: repeat(3,1fr); gap: 8px;
@@ -101,7 +98,7 @@ const BottomNav = styled.nav`
 `
 
 export default function Management() {
-  const navigate = useNavigate()
+  // const navigate = useNavigate()
   const location = useLocation()
   console.log('location.state:', location.state)
 

@@ -1,7 +1,6 @@
 import styled, { css } from 'styled-components'
 
 import CircleChart from '../components/CircleChart'
-import { useNavigate, useLocation } from 'react-router-dom'
 
 
 type Senior = {
@@ -317,8 +316,6 @@ function toneFor(b: Senior['badges'][number]): 'blue'|'yellow'|'green'|'red'|'gr
 }
 
 export default function Senior_details() {
-  const navigate = useNavigate();
-  const location = useLocation();
 
   const senior: Senior = {
       id: 's1',
